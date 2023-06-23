@@ -1,0 +1,51 @@
+//handwriting
+{
+    "image":"path image",
+    "transcription":"path",
+    "description":"נח",
+    "path_id":3
+}
+//navigation
+{
+    "id": 5,
+    "description": "בראשית"
+}
+//peirush
+{
+    "handwriting_id":2,
+    "user_id":3,
+    "peirush_text":"דגכעיח"
+} 
+//comment
+{
+    "peirush_id":4,
+    "user_id": 3,
+    "comment_text":"ppppppppppppppppppppppp"
+} 
+//corrections
+{
+    "handwriting_id":3,
+    "user_id": 3,
+    "word_index":14,
+    "new_word":"oooooo",
+    "original_word": "uuuuuuuuuuuuu",
+    "date":"2002-12-12"
+} 
+//user
+{
+    "first_name":"רחלי",
+    "last_name":"ברוורמן",
+    "email_confirm": 1,
+    "email": "racheliur10@gmail.com",
+    "password":  "7s226y"
+
+}
+//books
+{
+    "name":"aaaa",
+    "description": "racheliur10@gmail.com",
+    "price": 99,
+    "image_type":"png",
+    "image_path":"dfghj",
+    "image_name":"book"
+}
