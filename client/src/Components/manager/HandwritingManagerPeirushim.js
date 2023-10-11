@@ -12,13 +12,18 @@ import TranscptionManager from "./TranscptionManager";
 import PeirushManager from "./PeirushManager";
 import { Card } from 'primereact/card';
 import '../../App.css';
+import { ProgressSpinner } from 'primereact/progressspinner';
 const Handwriting = () => {
     const params = useParams()
     const peirushId = params.id;
 
     const { data, loading, error, refetch } = useGetAxiosApi(`handwritings/${peirushId}`);
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="card flex justify-content-center">
+                <ProgressSpinner />
+            </div>
+        )
     }
     if (error) {
         return <p>Error!</p>;

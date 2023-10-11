@@ -54,6 +54,10 @@ body {
   cursor: pointer;
 }
 
+.hovered-button:hover {
+  background-color: red; /* Background color will be red when hovered */
+ 
+}
 /* .p-button {
   color: #ffffff;
   background: #5a553b;

@@ -3,6 +3,7 @@ import { Button } from 'primereact/button';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import useGetAxiosApi from '../Hooks/useGetAxiosApi';
 import '../Services/style/books.css';
+import { ProgressSpinner } from 'primereact/progressspinner';
 // import { Rating } from 'primereact/rating';
 // import { Tag } from 'primereact/tag';
 
@@ -13,9 +14,21 @@ const Books = () => {
     const [layout, setLayout] = useState('grid');
 
     const { data, loading, error, refetch } = useGetAxiosApi('books');
+    
     useEffect(() => {
         setBooks(data)
-    }, [data])
+    }, [data]) 
+
+    if (loading) {
+        return (
+            <div className="card flex justify-content-center">
+                <ProgressSpinner />
+            </div>
+        )
+    }
+    if (error) {
+        return <p>Error!</p>;
+    }
  
     const listItem = (book) => {
         return (

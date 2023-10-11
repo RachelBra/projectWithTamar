@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
-import useGetAxiosApi from '../Hooks/useGetAxiosApi';
 import { enterHanwriting, createTree } from '../Services/functions';
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import 'primeflex/primeflex.css';
 import axios from 'axios';
-// import '../App.css';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import '../App.css';
+// import { CustomTreeNode } from './CustomTreeNode'; // Import the CustomTreeNode component 
 
-export default function FilterDemo() {  
-          
+export default function FilterDemo() {
+
     const navigate = useNavigate()
-
     const [nodes, setNodes] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -23,7 +23,7 @@ export default function FilterDemo() {
                 setNodes(y);
                 setLoading(false);
             })
-            .catch(function (error) {      
+            .catch(function (error) {
             })
             .finally(function () {
             });
@@ -35,11 +35,27 @@ export default function FilterDemo() {
 
     return (
         <>
-            {
-                loading ? <div>louding - do something</div> : <div className="card flex flex-wrap justify-content-center gap-5">
-                    <Tree  loading = {loading}  style={{ "direction": "ltr" }}  className='text-right w-full md:w-30rem' value={nodes} filter filterMode="strict" filterPlaceholder=" לחיפוש כתב יד\תיקייה"  onNodeClick={(e) => e.node.isNav && navigate(`Handwriting/${e.node.id}`)} />
+            {loading ? (
+                <div className="card flex justify-content-center">
+                    <ProgressSpinner />
                 </div>
-            }
+            ) : (
+                <div className="card mt-3 flex flex-wrap justify-content-center gap-5 " style={{ "width": "45%" }} >
+                {/* <div className="card flex flex-wrap justify-content-center gap-5 "> */}
+                    <Tree
+                        loading={loading}
+                        // style={{ direction: '' }}
+                        className=" w-full md:w-40rem "
+                        value={nodes}
+                        filter
+                        filterMode="strict"
+                        filterPlaceholder=" לחיפוש כתב יד\תיקייה"
+                        onNodeClick={(e) => {
+                            e.node.isNav && navigate(`Handwriting/${e.node.id}`);
+                        }}
+                    />
+                </div>
+            )}   
         </>
     )
 }

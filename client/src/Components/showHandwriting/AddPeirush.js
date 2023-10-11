@@ -1,11 +1,26 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useForm, Controller } from 'react-hook-form';
 import { Editor } from 'primereact/editor';
 import { Button } from 'primereact/button';
 // import { Toast } from 'primereact/toast';
 import axios from 'axios';
 import '../../App.css';
+// import '../../Services/style/button.css'
+import { Dialog } from 'primereact/dialog';
+import { useNavigate } from "react-router-dom"
 const Contact = (props) => {
+
+    const navigate = useNavigate();
+
+    const [visible, setVisible] = useState(false);
+
+    const footerContent = (
+        <div className="flex-wrap justify-content-start align-items-left gap-3 mt-3" style={{ direction: "ltr" }}>
+        {/* <div className="flex-wrap justify-content-between align-items-left gap-3 mt-3" style={{ direction: "ltr" }}> */}
+            <Button onClick={() => { setVisible(false); navigate("/LogIn"); }} label="כן, קח אותי לדף ההרשמה" className="m-1 border-1 border-bluegray-500 w-6.7rem" icon="pi pi-check" severity="secondary" type="submit" raised autoFocus />
+            <Button onClick={() => setVisible(false)} label="לא" className="m-1" icon="pi pi-times" severity="secondary" type="submit" raised outlined />
+        </div>
+    );
 
     const addPerush = (perush) => {
         axios.post(`http://localhost:8000/handwritings/peirushim`, perush)
@@ -20,10 +35,6 @@ const Contact = (props) => {
     }
 
     const toast = useRef(null);
-
-    // const show = (flag) => {
-    //     flag? toast.current.show({ severity: 'success', summary: 'הפירוש נקלט בהצלחה', detail: 'הפירוש יפוררסם לאחר אישור מנהל' }):toast.current.show({ severity: 'success', summary: 'הפירוש לא נקלט', detail: 'בעיה בלתי צפויה מנעה את העלאת הפירוש' })
-    // };
 
     const renderHeader = () => {
         return (
@@ -48,9 +59,9 @@ const Contact = (props) => {
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        if(JSON.parse(localStorage.getItem("user"))?.id == undefined)
-            alert("לשליחת פחירוש יש להתחבר")
-        
+        if (JSON.parse(localStorage.getItem("user"))?.id == undefined)
+            setVisible(true);
+
         const perush = {
             handwriting_id: props.handwritingId,
             user_id: JSON.parse(localStorage.getItem("user")).id,
@@ -66,29 +77,42 @@ const Contact = (props) => {
     };
 
     return (
-        // <>
-        // {props.userId?
-
+        <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* <Toast ref={toast} /> */}
-                <Controller
-                    name="blog"
-                    control={control}
-                    rules={{ required: 'אין תוכן לשליחה.' }}
-                    render={({ field }) => <Editor id={field.name} name="blog" value={field.value} headerTemplate={header} onTextChange={(e) => field.onChange(e.textValue)} style={{ height: '320px' }} />}
-                />
-                <div className="flex flex-wrap justify-content-between align-items-left gap-3 mt-3">
-                    {getFormErrorMessage('blog')}
-                    <Button onClick={()=>addPerush} type="submit" label="שלח פירוש" icon="pi pi-check"/>
-                    <Button style={{direction:"rtl"}} onClick={()=>props.setOpen(false)} label="ביטול" className="p-button-text" icon="pi pi-times" />
+                <div style={{ "direction": "ltr" }}>
+                    <Controller className="text-left"
+                        dir="ltr"
+                        name="blog"
+                        control={control}
+                        rules={{ required: 'אין תוכן לשליחה.' }}
+                        style={{ direction: 'ltr' }}
+                        render={({ field }) => (
+                            <Editor
+                                className="text-left"
+                                id={field.name}
+                                dir="ltr"
+                                name="blog"
+                                value={field.value}
+                                headerTemplate={header}
+                                onTextChange={(e) => field.onChange(e.textValue)}
+                                style={{ height: '320px', direction: 'ltr' }} />)}
+                    />
+                    <div className="flex-wrap justify-content-between align-items-left gap-3 mt-3" style={{ direction: "ltr" }}>
+                        {getFormErrorMessage('blog')}
+                        <Button onClick={() => addPerush} label="שלח" className="m-1 border-1 border-bluegray-500 w-6.7rem" icon="pi pi-check" severity="secondary" type="submit" raised />
+                        <Button onClick={() => props.setOpen(false)} label="ביטול" className="m-1" icon="pi pi-times " severity="secondary" type="submit" raised outlined />
+                    </div>
                 </div>
             </form>
-
-    //     :
-    //     <>
-    //     <h1>רק משתמש רשום יכול לשלוח הודעות למערכת</h1>
-    //     <h2>   להרשמה <NavLink to={"/Register"}>לחץ כאן</NavLink></h2></>
-    // }</>
+            <Dialog header="הפירוש לא נקלט" visible={visible} style={{ width: '40vw', direction: 'rtl' }} onHide={() => setVisible(false)} footer={footerContent}>
+                <p className="m-0">
+                    רק משתמש רשום יכול להעלות הצעות הערות ולהגיב
+                </p><br></br>
+                <p className="m-0">
+                    תרצה להירשם?
+                </p>
+            </Dialog>
+        </>
     )
 }
 export default Contact;
