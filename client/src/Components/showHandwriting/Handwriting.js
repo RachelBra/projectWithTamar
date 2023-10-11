@@ -43,7 +43,8 @@ const Handwriting = () => {
             <div className="card" style={{ "width": "100%", "direction": "rtl" }} >
                 <div className="flex flex-column md:flex-row">
                     <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5" >
-                        {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="250" preview p-button-text style={{ marginLeft: "3px" }} />}
+                    {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="100%" preview style={{ marginLeft: "1px" }} />}
+                        {/* {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="250" preview p-button-text style={{ marginLeft: "3px" }} />} @do warning@ */}
 
                     </div>
                     <div className="w-full md:w-2">
@@ -56,7 +57,7 @@ const Handwriting = () => {
                     </div>
                     <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
                         <div className="w-full md:w-s5 flex align-items-center justify-content-center py-5">
-                            <Card title="תמלול על ידי טכנולוגיה של בינה מלאכותית" style={{ width: '97%' }}>
+                            <Card title="תמלול על ידי טכנולוגיה של בינה מלאכותית" style={{ width: '100%' }}>
                                 <Transcption show={show} text={data.handwriting.transcription} handwritingId={handwritingId}></Transcption>
                             </Card>
                         </div>
@@ -66,8 +67,9 @@ const Handwriting = () => {
             <div className="card">
                 <div className="card  flex-column flex justify-content-right  " style={{ "width": "89%" }}>
                     <Divider align="right">
-                        {open == 0 ? <Button className="" style={{ direction: 'ltr' }} label="הוספת פירוש" severity="secondary" rounded onClick={() => setOpen(1)} icon='pi pi-plus' /> : <AddPeirush show={show1} setOpen={setOpen} open={open} handwritingId={handwritingId}></AddPeirush>}
-                    </Divider>
+                        {open == 0 ? <Button className="" style={{ direction: 'ltr' }} label="הוספת פירוש" severity="secondary" rounded onClick={() => setOpen(1)} icon='pi pi-plus' /> : <></>}
+                    </Divider>                  
+                    {open == 1 && <AddPeirush show={show1} setOpen={setOpen} open={open} handwritingId={handwritingId}></AddPeirush>}
                     <Peirush peirushim={data.peirushim} handwritingId={handwritingId}></Peirush>
                 </div>
             </div>

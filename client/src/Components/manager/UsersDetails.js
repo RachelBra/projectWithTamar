@@ -93,7 +93,7 @@ const UsersDetailsRacheli = (props) => {
   const renderHeader = () => {
     return (
       <div className="flex justify-content-end">
-        <Button className='ml-6' label='שליחת מייל לכלל המשתמשים' onClick={() => navigate(`/EmailToAllUsers/${JSON.parse(localStorage.getItem("user"))?.id}`,  { state: { show: show } })} severity="secondary" text ></Button>
+        <Button className='ml-6' label='שליחת מייל לכלל המשתמשים' onClick={() => navigate(`/EmailToAllUsers/${JSON.parse(localStorage.getItem("user"))?.id}`, { state: { show: show } })} severity="secondary" text ></Button>
         <span className="p-input-icon-left">
           <i className="pi pi-search" />
           <InputText
@@ -137,10 +137,10 @@ const UsersDetailsRacheli = (props) => {
   const header = renderHeader();
 
   const footerContent = (
-    <div>
-    <Button label="ביטול" icon="pi pi-times" severity="secondary"  onClick={() => setVisible(false)} className="p-button-text" />
-    <Button label="אישור" icon="pi pi-check" severity="secondary"  onClick={() => { updateAuthorization(values.status == "משתמש חסום" ? 1 : 0, values.id); setVisible(false); console.log("ppppp", values); }} autoFocus />
-  </div>
+    <div className="flex-wrap justify-content-start align-items-left gap-3 mt-3" style={{ direction: "ltr" }}>
+      <Button label="ביטול" icon="pi pi-times" severity="secondary" onClick={() => setVisible(false)} className="m-1" type="submit" raised outlined />
+      <Button label="אישור" icon="pi pi-check" severity="secondary" onClick={() => { updateAuthorization(values.status == "משתמש חסום" ? 1 : 0, values.id); setVisible(false) }} className="m-1 border-1 border-bluegray-500 w-6.7rem" type="submit" raised />
+    </div>
   );
 
   const tmp = () => {
@@ -148,7 +148,7 @@ const UsersDetailsRacheli = (props) => {
       <> {values.status == 'משתמש' ?
         <div className="card flex justify-content-center">
           {/* <Button label="Secondary" severity="secondary" text icon="PrimeIcons.pi-lock" onClick={() => setVisible(true)} /> */}
-          <Dialog header="חסימת משתמש" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+          <Dialog header="חסימת משתמש" visible={visible} style={{ width: '50vw', direction: 'rtl' }} onHide={() => setVisible(false)} footer={footerContent}>
             <p className="mb-5">
               בלחיצה על אישור המשתמש יחסם
             </p>
@@ -164,7 +164,7 @@ const UsersDetailsRacheli = (props) => {
         values.status == "משתמש חסום" ?
           <div className="card flex justify-content-center">
             {/* <Button label="Secondary" severity="secondary" text icon="pi-lock" onClick={() => setVisible(true)} /> */}
-            <Dialog header="ביטול חסימת משתמש" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+            <Dialog header="ביטול חסימת משתמש" visible={visible} style={{ width: '50vw', direction: 'rtl' }} onHide={() => setVisible(false)} footer={footerContent}>
               <p className="mb-5">
                 בלחיצה על אישור חסימת המשתמש תתבטל
               </p>
@@ -189,7 +189,7 @@ const UsersDetailsRacheli = (props) => {
   };
   const show = () => {
     toast.current.show({ severity: 'success', summary: 'איזה יופי!!!!', detail: 'המייל נשלח בהצלחה' });
-}; 
+  };
   return (
     props.userAuthorization == 2 ?
       <>
@@ -206,7 +206,7 @@ const UsersDetailsRacheli = (props) => {
             globalFilterFields={['name', 'lastName', 'configEmail', 'status']}
             header={header}
             emptyMessage="לא נמצאו משתמשים."
-            onRowClick={(e) => { email ? navigate(`EmailToUser/${e.data.id}`, { state: { show: show } } ) : setValues(e.data) }}
+            onRowClick={(e) => { email ? navigate(`EmailToUser/${e.data.id}`, { state: { show: show } }) : setValues(e.data) }}
             // className='align-items-right'
             style={{ "direction": "rtl" }}
           >
@@ -251,8 +251,8 @@ const UsersDetailsRacheli = (props) => {
               className='text-right'
               header=' שליחת מייל למשתמש'
               //
-              body={< div className=" border-1 border-circle w-2rem h-2rem flex align-items-center justify-content-center text-red-700" ><i className=" pi pi-send"  style={{ color: 'red' ,borderRadius:"2px"}}
-                onClick={(e) => setEmail(true)} ></i></div>}
+              body={< div className=" border-1 border-circle w-2rem h-2rem flex align-items-center justify-content-center text-red-700" >
+                <i className=" pi pi-send" style={{ color: 'red', borderRadius: "2px" }} onClick={(e) => setEmail(true)} ></i></div>}
               headerClassName="w-10rem"
 
             />

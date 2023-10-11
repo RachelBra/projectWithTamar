@@ -59,8 +59,8 @@ const Peirush = () => {
                         {peirushim[index].peirush_text}
                     </p>
                     {peirushim[index].permission == 0 &&
-                        <Button className='m-1' icon="pi pi-check " severity="success" rounded  outlined onClick={(e) => { setKind(e.target.innerHTML); setVisible(true); setId(peirushim[index].id); console.log("0000000000000", peirushim[index].id); }} />}
-                    <Button className='m-1'  icon="pi pi-times "  severity="danger" rounded outlined onClick={() => { setVisible(true); setId(peirushim[index].id) }} />
+                        <Button className='m-1' icon="pi pi-check " severity="success" rounded outlined onClick={(e) => { setKind(e.target.innerHTML); setVisible(true); setId(peirushim[index].id); console.log("0000000000000", peirushim[index].id); }} />}
+                    <Button className='m-1' icon="pi pi-times " severity="danger" rounded outlined onClick={() => { setVisible(true); setId(peirushim[index].id) }} />
                 </Fieldset>
             )
         }
@@ -68,14 +68,14 @@ const Peirush = () => {
     }
     const footerContent = (
         kind == 'אישור' ?
-            <div>
-                <Button label="לא" severity="secondary" icon="pi pi-times" onClick={() => { setVisible(false); setKind(""); }} className="p-button-text" />
-                <Button label="כן" severity="secondary" icon="pi pi-check" onClick={() => { setVisible(false); confirmPerush() }} autoFocus />
+            <div className="flex-wrap justify-content-between align-items-left gap-3 mt-3" style={{ direction: "ltr" }}>
+                <Button onClick={() => { setVisible(false); setKind(""); }} label="לא"  icon="pi pi-times" className="m-1" severity="secondary" raised outlined/>
+                <Button onClick={() => { setVisible(false); confirmPerush() }} label="כן"  icon="pi pi-check" className="m-1" severity="secondary" raised outlined />
             </div>
             :
-            <div>
-                <Button label="לא" icon="pi pi-times" severity="secondary" onClick={() => { setVisible(false) }} className="p-button-text" />
-                <Button label="כן" icon="pi pi-check" severity="secondary" onClick={() => { setVisible(false); deletePerush() }} autoFocus />
+            <div className="flex-wrap justify-content-between align-items-left gap-3 mt-3" style={{ direction: "ltr" }}>
+                <Button  onClick={() => { setVisible(false) }} label="לא" icon="pi pi-times" className="m-1" severity="secondary" raised outlined/>
+                <Button onClick={() => { setVisible(false); deletePerush() }} label="כן" icon="pi pi-check" className="m-1" severity="secondary" raised outlined/>
             </div>
     );
 

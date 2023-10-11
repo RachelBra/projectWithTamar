@@ -3,18 +3,16 @@ import { useNavigate } from "react-router-dom"
 import React from "react";
 import 'primeicons/primeicons.css';
 
-
 export const createTree = (all = [], x) => {
     var arr = all.filter(a => a.parent_id == x.id);
     for (let index = 0; index < arr.length; index++) {
         const obj = arr[index];
-        // obj['label'] = x.label + <i className="pi pi-check"></i> ;
-        // body = <i className="pi pi-send" style={{ color: 'red' }}></i>
         obj['key'] = x.id ? `${x.key}-${index}` : `${index}`;
         var children = createTree(all, obj);
         obj['children'] = children ? children : [];
-        obj['icon'] = 'pi pi-folder';
         obj['isNav'] = false; 
+        obj['expandedIcon'] = 'pi pi-folder-open';
+        obj['collapsedIcon']= 'pi pi-folder';
 
     }
     return arr;

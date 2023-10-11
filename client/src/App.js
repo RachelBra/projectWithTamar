@@ -76,7 +76,9 @@ import AddHandwriting from './Components/manager/AddHandwriting';
 import AddFolder from './Components/manager/AddFolder';
 import DeleteFolder from './Components/manager/DeleteFolder';
 import AddBook from './Components/manager/AddBook';
-import ChangeTree from './Components/manager/ChangeTree'
+import ChangeTree from './Components/manager/ChangeTree';
+// import Transcption from './Components/showHandwriting/Transcption';
+
 
 
 function App() {

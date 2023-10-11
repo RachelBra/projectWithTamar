@@ -83,7 +83,7 @@ const Contact = (props) => {
                 />
                 <div className="flex flex-wrap justify-content-between align-items-center gap-3 mt-3">
                     {getFormErrorMessage('blog')}
-                    <Button label="שלח" severity="secondary" onClick={sendEmail} type="submit" raised />
+                    <Button onClick={sendEmail} label="שלח" className="m-1" icon="pi pi-check" severity="secondary" type="submit" raised />
                 </div>
             </form>
         </div>

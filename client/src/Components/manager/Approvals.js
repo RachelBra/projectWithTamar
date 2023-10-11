@@ -7,6 +7,7 @@ import { useFetcher, useNavigate, useParams } from "react-router-dom"
 import 'primeflex/primeflex.css';
 import axios from 'axios';
 import '../../Services/style/approvals.css';
+import DropZone from './Racheli';
 export default function SingleColumnDemo(props) {
     const navigate = useNavigate();
     const params = useParams()
@@ -47,10 +48,17 @@ export default function SingleColumnDemo(props) {
         // }
 
     }, [])
+    /////////////////////
+    // const [updateAttched, setUpdateAttched] = useState([]);לא קשור זה העלאת תמונה
 
     return (
         props.userAuthorization == 2 ?
             <div className="card mt-3" style={{ "width": "80%", "direction": "rtl" }}>
+            {/* <DropZone setUpdateAttched={setUpdateAttched}></DropZone>לא קשור זה העלאת תמונה
+            {updateAttched.length>0&&updateAttched.map((item)=>{
+                return<>
+                <h1>{item.fileName}!!</h1></>
+                })} */}
                 {corr.length > 0 &&
                     <>
                         <h1 >תיקונים לתמלול כתב היד:</h1>
