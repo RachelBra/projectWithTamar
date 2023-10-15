@@ -22,6 +22,7 @@ import axios from 'axios';
 import EmailToUser from './EmailToUser';
 import { Toast } from 'primereact/toast';
 import '../../App.css';
+import { Link } from "react-router-dom";
 
 
 const UsersDetailsRacheli = (props) => {
@@ -31,6 +32,7 @@ const UsersDetailsRacheli = (props) => {
   const [email, setEmail] = useState(false);
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userEmailAddress, setserEmailAddress] = useState(true);
   const toast = useRef(null);
 
 
@@ -42,7 +44,8 @@ const UsersDetailsRacheli = (props) => {
     lastName: { value: null, matchMode: FilterMatchMode.CONTAINS },
     config: { value: null, matchMode: FilterMatchMode.EQUALS },
     status: { value: null, matchMode: FilterMatchMode.EQUALS },
-    verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+    verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+    emailAddress: { value: null, matchMode: FilterMatchMode.EQUALS }
   });
 
   const updateAuthorization = (authorization, id) => {
@@ -90,10 +93,16 @@ const UsersDetailsRacheli = (props) => {
     setGlobalFilterValue(value);
   };
 
+  const getEmailAddresses = () => {
+    const verifiedUsers = users.filter(user => user.verified);
+    const emailAddresses = verifiedUsers.map(user => user.emailAddress).join(',');
+    window.open(`mailto:${emailAddresses}`, '_blank')
+  }
+
   const renderHeader = () => {
     return (
       <div className="flex justify-content-end">
-        <Button className='ml-6' label='שליחת מייל לכלל המשתמשים' onClick={() => navigate(`/EmailToAllUsers/${JSON.parse(localStorage.getItem("user"))?.id}`, { state: { show: show } })} severity="secondary" text ></Button>
+        <Button className='ml-6' label='שליחת מייל לכלל המשתמשים' onClick={() => getEmailAddresses()} severity="secondary" text ></Button>
         <span className="p-input-icon-left">
           <i className="pi pi-search" />
           <InputText
@@ -190,6 +199,20 @@ const UsersDetailsRacheli = (props) => {
   const show = () => {
     toast.current.show({ severity: 'success', summary: 'איזה יופי!!!!', detail: 'המייל נשלח בהצלחה' });
   };
+
+  const CustomEmailColumn = ({ rowData }) => {
+    return (
+      <a href={`mailto:${rowData.emailAddress}`} target="_blank" rel="noopener noreferrer">
+        {rowData.emailAddress}
+      </a>
+    );
+  };
+  
+    const emailBodyTemplate = (rowData) => {
+      return <CustomEmailColumn rowData={rowData} />;
+    };
+  
+
   return (
     props.userAuthorization == 2 ?
       <>
@@ -203,11 +226,9 @@ const UsersDetailsRacheli = (props) => {
             filters={filters}
             filterDisplay="row"
             loading={loading}
-            globalFilterFields={['name', 'lastName', 'configEmail', 'status']}
+            globalFilterFields={['name', 'lastName', 'configEmail', 'status', 'emailAddress']}
             header={header}
             emptyMessage="לא נמצאו משתמשים."
-            onRowClick={(e) => { email ? navigate(`EmailToUser/${e.data.id}`, { state: { show: show } }) : setValues(e.data) }}
-            // className='align-items-right'
             style={{ "direction": "rtl" }}
           >
             <Column
@@ -249,12 +270,12 @@ const UsersDetailsRacheli = (props) => {
             />
             <Column
               className='text-right'
-              header=' שליחת מייל למשתמש'
-              //
-              body={< div className=" border-1 border-circle w-2rem h-2rem flex align-items-center justify-content-center text-red-700" >
-                <i className=" pi pi-send" style={{ color: 'red', borderRadius: "2px" }} onClick={(e) => setEmail(true)} ></i></div>}
-              headerClassName="w-10rem"
-
+              field="emailAddress"
+              header="שליחת מייל למשתמש"
+              style={{ minWidth: '6rem' }}
+              filterPlaceholder="חיפוש על פי כתובת מייל"
+              filter
+              body={emailBodyTemplate}
             />
           </DataTable>
         </div>
