@@ -154,8 +154,7 @@ export const showPath =(y, arrtree)=>{
 
 export const orderUsers = (data = [])=>{
     var newUser = [];
-    console.log("i her!!")
-    
-    data.forEach(user => {newUser.push({id:user.id, name:user.first_name, lastName: user.last_name, verified: user.email_confirm==0?false:true, status:user.authorization==0?'משתמש חסום':user.authorization==1?'משתמש': 'מנהל'})})
+    console.log("data", data);
+    data.forEach(user => {newUser.push({id:user.id, name:user.first_name, lastName: user.last_name, verified: user.email_confirm==0?false:true, status:user.authorization==0?'משתמש חסום':user.authorization==1?'משתמש': 'מנהל', emailAddress:user.email})})
     return newUser;
 }
