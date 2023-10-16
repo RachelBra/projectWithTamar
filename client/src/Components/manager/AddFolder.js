@@ -9,7 +9,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from "primereact/inputtext";
 import axios from 'axios';
 import 'primeflex/primeflex.css';
-import AddingSteps from './AddingSteps';
+import AddingSteps from './AddinfStepsGeneric';
 import Tree from '../Tree';
 import '../../App.css';
 
@@ -50,12 +50,11 @@ export default function CustomUploadDemo(props) {
         </div>
     );
 
-
+        const steps = ['בחירת מיקום הוספה', 'בחירת שם לתיקיה', 'אישור ושמירה']
     return (
         props.userAuthorization==2? 
-        <>
-            <AddingSteps level={level}></AddingSteps>
-
+        <>            
+            <AddingSteps steps = {steps} level = {level}></AddingSteps>
             {level == 0 &&
                 <div className="card flex justify-content-center flex-column flex align-items-center">
                      <h1>בחר מיקום להוספת תקייה </h1>
@@ -78,7 +77,7 @@ export default function CustomUploadDemo(props) {
                     <h2 className='mx-6rem' >התקייה נוספה בהצלחה</h2>
                     <Tree level={level} flag={flag} setFlag={setFlag}></Tree>
 
-                    <h2 className='mx-6rem' >לכתב יד נוסף לחץ על הכפתור</h2>
+                    <h2 className='mx-6rem' >להוספת תיקיה חדשה נוספת לחץ כאן</h2>
                     <Button onClick={() => window.location.reload()} rounded icon={"pi pi-plus"}></Button>
 
                 </div>}

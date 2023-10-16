@@ -27,7 +27,11 @@ const Books = () => {
         )
     }
     if (error) {
-        return <p>Error!</p>;
+        return (
+            <div className="card flex justify-content-center">
+            <p>לצערינו אין ספרים זמינים במלאי</p>
+            </div>
+        )
     }
  
     const listItem = (book) => {

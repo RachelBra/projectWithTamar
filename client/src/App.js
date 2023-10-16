@@ -115,7 +115,7 @@ function App() {
             <Route path='/Register' element={<Register />} />
             <Route path='/Contact' element={<Contact userId={userId}/>} />
             <Route path='/Tree' element={<Tree help={help}/>} />
-            <Route path='/Tree/Handwriting/:id' element={<Handwriting />} />
+            <Route path='Tree/Handwriting/:id' element={<Handwriting />} />
             <Route path='/AddHandwriting/Handwriting/:id' element={<Handwriting />} />
             <Route path='/Books' element={<Books />} />
             <Route path='/RePassword1' element={<RePassword1 set={setUserIdCallback}/>} />

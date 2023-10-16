@@ -6,7 +6,8 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from "primereact/inputtext";
 import axios from 'axios';
 import 'primeflex/primeflex.css';
-import AddingSteps from './AddingSteps';
+// import AddingSteps from './AddingSteps';
+import AddingSteps from './AddinfStepsGeneric';
 import Tree from '../Tree';
 import '../../App.css';
 import DropZone from './Racheli';
@@ -58,11 +59,11 @@ export default function CustomUploadDemo(props) {
     };
 /////////////////
 const [updateAttched, setUpdateAttched] = useState([]);
-
+const steps = ['בחירת קובץ', 'בחירת מיקום הקובץ', 'שם הקובץ', 'אישור ושמירה' ]
     return (
         props.userAuthorization == 2 ?
             <>
-                <AddingSteps level={level}></AddingSteps>
+                <AddingSteps steps = {steps} level={level}></AddingSteps>
 
                 {level == 0 &&
                     <div className="card flex justify-content-center flex-column flex align-items-center">

@@ -81,7 +81,7 @@ const RePassword2 = (props) => {
                                 </div>
                             )} />                          
 
-                            <Button type="submit" label="שליחה לאימות" className="mt-2" />
+                            <Button type="submit" label="אישור" className="mt-2" />
                             <div>    המייל לא מופיע? <NavLink to={"/RePassword1"}>שליחה מחודשת</NavLink></div>
                         </form>
                     )} />
