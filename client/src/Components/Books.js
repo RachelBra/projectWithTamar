@@ -72,17 +72,9 @@ const Books = () => {
         else if (layout == 'grid') return gridItem(book);
     };
 
-    const header = () => {
-        return (
-            <div className="flex justify-content-end" severity="secondary">
-                <DataViewLayoutOptions className='secondary' severity="secondary" layout={layout} onChange={(e) => setLayout(e.value)} />
-            </div>
-        );
-    };
-
     return (
-        <div className="card">
-            <DataView severity="secondary" value={books} itemTemplate={itemTemplate} layout={layout} header={header()} />
+        <div className="card opacity-90 m-1">
+            <DataView severity="secondary" value={books} itemTemplate={itemTemplate} layout={layout} />
         </div>
     )
 }

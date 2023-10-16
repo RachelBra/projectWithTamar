@@ -69,8 +69,8 @@ const RePassword3 = (props) => {
 
 
     return (
-        <div className="flex justify-content-center">
-            <div className="card">
+        <div className="flex justify-content-center m-3">
+            <div className="card opacity-90">
                 <h5 className="text-center">שחזור סיסמה</h5>
                 <Form onSubmit={onSubmit} initialValues={{ password: '', pass_valid: '' }} validate={validate} render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit} className="p-fluid">
@@ -95,7 +95,7 @@ const RePassword3 = (props) => {
                                 {getFormErrorMessage(meta)}
                             </div>
                         )} />
-                        <Button type="submit" label="שליחה לאימות" className="mt-2" />
+                        <Button type="submit" label="שליחה לאימות" className="m-1 border-1 border-bluegray-500 " severity="secondary" raised />
                     </form>
                 )} />
             </div>

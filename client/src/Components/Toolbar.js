@@ -49,10 +49,10 @@ const Toolbar = (props) => {
 
     return (
         <>
-            <TieredMenu className='  top-0 left-4 mr-0 justify-content-center  ' model={tms} popup ref={menu} breakpoint="767px" style={{ position: 'fixed', right: '0px' }} />
+            <TieredMenu className=' top-0 left-4 mr-0 justify-content-center  ' model={tms} popup ref={menu} breakpoint="767px" style={{ position: 'fixed', right: '0px' }} />
             {/* <div className="flex flex-wrap justify-content-between align-items-center gap-3 mt-3 " style={{ }}> */}
-            <div className="card border-top-2 border-yellow-600 surface-overlay justify-content-center">
-                <MegaMenu style={{ width: "100%", high: "20%" }} className='h-7rem text-xl  border-none border-bottom-2 ' model={items} orientation="horizontal" start={start} end={end} breakpoint="960px" />
+            <div className="opacity-90 card border-top-2 border-yellow-600 surface-overlay justify-content-center">
+                <MegaMenu style={{ width: "100%", high: "20%" }} className=' opacity-100 h-7rem text-xl  border-none border-bottom-2 ' model={items} orientation="horizontal" start={start} end={end} breakpoint="960px" />
             </div>
         </>
 

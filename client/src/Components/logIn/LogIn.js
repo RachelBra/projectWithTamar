@@ -47,12 +47,12 @@ const LogIn = (props) => {
     }, [rrr]);
 
     return (
-        <div className="card mt-3" style={{ "width": "70%", "direction": "rtl" }} >
+        <div className=" opacity-90 card mt-3" style={{ "width": "70%", "direction": "rtl" }} >
             <div className="flex flex-column md:flex-row">
                 <div className="w-full md:w-5 flex flex-column align-items-s justify-content-center gap-3 py-5" >
                     <div className="flex flex-column justify-content-center align-items-center gap-2">
                         <div className="flex flex-column">
-                            <span className="p-float-label flex-column">
+                            <span className="opacity-100 p-float-label flex-column">
                                 <InputText id="email" email={email} onDragEnter={() => getUser()} onChange={(e) => { setEmail(e.target.value); validEmail(e.target.value) }} onBlur={(e) => validEmail(e.target.value)} />
                                 <label htmlFor="email"> אימייל*</label>
                             </span>
@@ -62,16 +62,16 @@ const LogIn = (props) => {
                         </div>
                     </div>
 
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-                        <span className="p-float-label">
+                    <div className=" flex flex-wrap justify-content-center align-items-center gap-2">
+                        <span className="opacity-100 p-float-label">
                             <Password id="password" password={password} onDragEnter={() => getUser()} feedback={false} onChange={(e) => setPassword(e.target.value)} />
                             <label htmlFor="password">סיסמה*</label>
                         </span>
                     </div>
 
                     <div className="flex flex-wrap justify-content-center align-items-center mt-3 gap-2">
-                            <Button className="w-12rem mx-auto" onClick={() => getUser()} onDragEnter={() => getUser()} label="כניסה" icon="pi pi-user" severity="secondary" raised autoFocus />
-                    </div>
+                            <Button onClick={() => getUser()} onDragEnter={() => getUser()} label="כניסה" icon="pi pi-user"  className="m-1 w-13rem border-1 border-bluegray-500 " severity="secondary" raised />
+ </div>
 
                     <div className='alin-cente' style={{ textAlign: 'center' }}>
                         <div className='text-cente'>    שכחת את הסיסמה?<NavLink to={"/RePassword1"}>שחזור סיסמה</NavLink></div>
@@ -87,7 +87,7 @@ const LogIn = (props) => {
                     </Divider>
                 </div>
                 <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
-                    <Button onClick={() => navigate("/Register")} label="הירשם" icon="pi pi-user-plus" className="p-button-success w-12rem mx-auto" severity="secondary" text raised />
+                    <Button onClick={() => navigate("/Register")} label="הירשם" icon="pi pi-user-plus" className="p-button-success w-13rem mx-auto opacity-100" severity="secondary" text raised />
 
                 </div>
             </div>
