@@ -66,7 +66,12 @@ export default function SingleColumnDemo(props) {
                             <Column field="description" header="תיאור" sortable style={{ width: '25%' }} className='text-right' ></Column>
                             <Column field="quantity" header="מספר תיקונים" sortable style={{ width: '25%' }} className='text-right'></Column>
                         </DataTable>
-                    </>}
+                    </>||<>
+                        <div  className="card mt-3" style={{ "width": "80%", "direction": "rtl" }}>
+                            <p>אין תיקונים חדשים לאשר</p>
+                        </div>
+                    </>
+                    }
                 {peir.length > 0 &&
                     <div className='pt-6'>
                         <h1 >פירושים לאישור:</h1>
@@ -74,7 +79,11 @@ export default function SingleColumnDemo(props) {
                             <Column field="description" header="תיאור" sortable style={{ width: '25%' }} className='text-right'></Column>
                             <Column field="quantity" header="מספר תיקונים" sortable style={{ width: '25%' }} className='text-right'></Column>
                         </DataTable>
-                    </div>}
+                    </div>||<>
+                    <div  className="card mt-3" style={{ "width": "80%", "direction": "rtl" }}>
+                        <p>אין פירושים חדשים לאשר</p>
+                    </div>
+                </>}
             </div>
             :
             <>

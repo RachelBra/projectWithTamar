@@ -11,7 +11,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from "primereact/inputtext";
 import axios from 'axios';
 import 'primeflex/primeflex.css';
-import AddingSteps from './AddingSteps';
+import AddingSteps from './AddinfStepsGeneric';
 import Tree from '../Tree';
 import '../../App.css';
 
@@ -60,26 +60,26 @@ export default function CustomUploadDemo(props) {
             setLevel(1);
         };
     };
-
+    const steps = ['תמונה לתצוגה', 'שם ספר', 'תאור לספר','קביעת מחיר']
     return (
         props.userAuthorization == 2 ?
             <>
-                <AddingSteps level={level}></AddingSteps>
+                <AddingSteps steps ={steps} level={level}></AddingSteps>
 
                 {level == 0 &&
                     <div className="card flex justify-content-center flex-column flex align-items-center">
-                        <h1>לחץ לבחירת קובץ, הכתב יתומלל באופן אוטומטי לקובץ נפרד</h1>
+                        <h1>לחץ לבחירת תמונה לתצוגה</h1>
                         <FileUpload className="flex-column" mode="basic" name="demo[]" url="/api/upload" accept="image/*,application/pdf" customUpload uploadHandler={customBase64Uploader} />
                     </div>}
                 {level == 1 &&
                     <div className="card flex justify-content-center flex-column flex align-items-center">
-                        <h1 className='mx-6rem' >שם</h1><br></br>
+                        <h1 className='mx-6rem' >הוסף את שם הספר</h1><br></br>
                         <InputText className='mx-6rem' value={description} onChange={(e) =>setDescription(e.target.value)} />
                         <Button label="אישור" onClick={() => setLevel(2)} />
                     </div>}
                 {level == 2 &&
                     <div className="card flex justify-content-center flex-column flex align-items-center">
-                        <h1 className='mx-6rem' >הוסף תאור לכתב היד</h1><br></br>
+                        <h1 className='mx-6rem' >הוסף תאור על הספר</h1><br></br>
                         <InputText className='mx-6rem' value={name} onChange={(e) =>setName(e.target.value)} />
                         <Button label="אישור" onClick={() => addBook({ "image_path": base64data,  "description": description, "name": name })} />
                     </div>}
