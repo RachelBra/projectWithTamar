@@ -12,7 +12,7 @@ const Contact = (props) => {
         const cookies = axios.put(`http://localhost:8000/users/emailToManager`, forNode)
             .then(function (response) {
                 show();
-                props.setOpen(0);
+                // props.setOpen(0);
                 console.log(response);
 
             })
@@ -83,7 +83,7 @@ const Contact = (props) => {
                 />
                 <div className="flex flex-wrap justify-content-between align-items-center gap-3 mt-3">
                     {getFormErrorMessage('blog')}
-                    <Button onClick={sendEmail} label="שלח" className="m-1" icon="pi pi-check" severity="secondary" type="submit" raised />
+                    <Button  label="שלח" className="m-1" icon="pi pi-check" severity="secondary" type="submit" raised />
                 </div>
             </form>
         </div>

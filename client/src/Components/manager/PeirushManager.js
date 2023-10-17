@@ -49,6 +49,7 @@ const Peirush = () => {
     }
 
     const showPerush = () => {
+        debugger
         var prsh = [];
         console.log("peirushim", peirushim);
 

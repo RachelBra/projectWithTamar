@@ -36,11 +36,11 @@ export default function FilterDemo() {
     return (
         <>
             {loading ? (
-                <div className="card flex justify-content-center">
+                <div className="card pacity-90 flex justify-content-center">
                     <ProgressSpinner />
                 </div>
             ) : (
-                <div className="card mt-3 flex flex-wrap justify-content-center gap-5 " style={{ "width": "45%" }} >
+                <div className="card pacity-90 mt-3 flex flex-wrap justify-content-center gap-5 " style={{ "width": "45%" }} >
                 {/* <div className="card flex flex-wrap justify-content-center gap-5 "> */}
                     <Tree
                         loading={loading}

@@ -101,8 +101,8 @@ const Register = () => {
                 </div>
             </Dialog>
 
-            <div className="flex justify-content-center">
-                <div className="card">
+            <div className="flex justify-content-center m-3">
+                <div className="card opacity-90">
                     <h5 className="text-center">הרשמה</h5>
                     <Form onSubmit={onSubmit} initialValues={{ first_name: '', last_name: '', email: '', password: '', pass_valid: '', email_config: '' }} validate={validate} render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit} className="p-fluid">
@@ -164,8 +164,7 @@ const Register = () => {
                                     <label htmlFor="email_config" className={classNames({ 'p-error': isFormFieldValid(meta) })}>אישור קבלת הודעות מהאתר</label>
                                 </div>
                             )} />
-
-                            <Button type="submit" label="הרשמה" className="mt-2" />
+                            <Button type="submit" label="הרשמה" className="m-1 border-1 border-bluegray-500 w-6.7rem" severity="secondary" raised/>
                         </form>
                     )} />
                 </div>

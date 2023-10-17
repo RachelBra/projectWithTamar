@@ -29,12 +29,12 @@ const UsersDetailsRacheli = (props) => {
   const navigate = useNavigate()
 
   const [values, setValues] = useState("");
-  const [email, setEmail] = useState(false);
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userEmailAddress, setserEmailAddress] = useState(true);
+  const [globalFilterValue, setGlobalFilterValue] = useState('');
+  const [statuses] = useState(['משתמש חסום', 'משתמש', 'מנהל']);
+  const [visible, setVisible] = useState(false);
   const toast = useRef(null);
-
 
   const { data, loading: loadingPrice, error, refetch } = useGetAxiosApi('users/usersList');
 
@@ -53,18 +53,12 @@ const UsersDetailsRacheli = (props) => {
     )
       .then(function (response) {
         refetch();
-        console.log("%%", cookies);
       })
       .catch(function (error) {
-
       })
       .finally(function () {
       });
   }
-
-  const [globalFilterValue, setGlobalFilterValue] = useState('');
-  const [statuses] = useState(['משתמש חסום', 'משתמש', 'מנהל']);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const tmp = orderUsers(data);
@@ -187,6 +181,7 @@ const UsersDetailsRacheli = (props) => {
       } </>
     )
   }
+  
   const statusBodyTemplate = (rowData) => {
     return (
       <Tag type={"button"} value={rowData.status} severity={getSeverity(rowData.status)}
@@ -195,9 +190,6 @@ const UsersDetailsRacheli = (props) => {
           tmp();
         }} />
     );
-  };
-  const show = () => {
-    toast.current.show({ severity: 'success', summary: 'איזה יופי!!!!', detail: 'המייל נשלח בהצלחה' });
   };
 
   const CustomEmailColumn = ({ rowData }) => {
