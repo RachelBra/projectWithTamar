@@ -36,7 +36,6 @@ const UsersDetailsRacheli = (props) => {
   const [visible, setVisible] = useState(false);
   const toast = useRef(null);
 
-
   const { data, loading: loadingPrice, error, refetch } = useGetAxiosApi('users/usersList');
 
   const [filters, setFilters] = useState({
@@ -182,6 +181,7 @@ const UsersDetailsRacheli = (props) => {
       } </>
     )
   }
+  
   const statusBodyTemplate = (rowData) => {
     return (
       <Tag type={"button"} value={rowData.status} severity={getSeverity(rowData.status)}
