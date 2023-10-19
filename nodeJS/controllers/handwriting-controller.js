@@ -86,21 +86,24 @@ class HandWritingController {
     // }
 
     addHandwriting = async (req, res) => {
+        // הירוקים הם בשביל להעלות תמונה כרגע רק כדי לבנות את הנתיב
         let imagePath = ""
-        const folder = path.join(__dirname, "..", "public", "images")
-        const filename = `${uuid()}`
-        const fileUrl = `${folder}\\${filename}.png`
+        const folder = path.join(__dirname, "..", "images")
+        // const filename = `${uuid()}`
+        const filename = req.body.image_path;
+        // const fileUrl = `${folder}\\${filename}.png`
+        const fileUrl = `${folder}\\${filename}`
+        // const base64String = req.body.image_path;
 
-        const base64String = req.body.image_path;
-
-        try {
-            imagePath = await base64toFile(base64String, { filePath: folder, fileName: filename, types: ['png'], fileMaxSize: 3145728 });
-        }
-        catch (error) {
-            return res.status(400).json({ message: 'error occured while loading image' })
-        }
+        // try {
+        //     imagePath = await base64toFile(base64String, { filePath: folder, fileName: filename, types: ['png'], fileMaxSize: 3145728 });
+        // }
+        // catch (error) {
+        //     return res.status(400).json({ message: 'error occured while loading image' })
+        // }
 
         const obj = await Handwriting.create({ image_path: fileUrl, transcription: req.body.transcription, description: req.body.description, path_id: req.body.path_id });
+        console.log("fileUrl", obj);
         if (obj)
             return res.status(201).json(obj)
         return res.status(507).json({ message: "not succcess" })

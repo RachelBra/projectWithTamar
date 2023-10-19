@@ -42,7 +42,6 @@ const DropZone = ({ setUpdateAttched }) => {
     return window.btoa(binary);
   };
   const onDrop = useCallback((acceptedFiles) => {
-    debugger;
     const newfilesArr = [];
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
@@ -84,7 +83,7 @@ const DropZone = ({ setUpdateAttched }) => {
     <section style={{ direction: "rtl", display: "flex" }}>
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>גרור תמונה או לחץ לבחירת תמונה</p>
       </div>
     </section>
   );
