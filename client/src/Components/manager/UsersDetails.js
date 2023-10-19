@@ -36,6 +36,7 @@ const UsersDetailsRacheli = (props) => {
   const [visible, setVisible] = useState(false);
   const toast = useRef(null);
 
+
   const { data, loading: loadingPrice, error, refetch } = useGetAxiosApi('users/usersList');
 
   const [filters, setFilters] = useState({
@@ -134,7 +135,7 @@ const UsersDetailsRacheli = (props) => {
   };
 
   const verifiedRowFilterTemplate = (options) => {
-    return <TriStateCheckbox value={options.value} onChange={(e) => { options.filterApplyCallback(e.value); console.log("e.value", e.value); }} />;
+    return <TriStateCheckbox value={options.value} onChange={(e) => { options.filterApplyCallback(e.value); }} />;
   };
 
   const header = renderHeader();
@@ -181,7 +182,7 @@ const UsersDetailsRacheli = (props) => {
       } </>
     )
   }
-  
+
   const statusBodyTemplate = (rowData) => {
     return (
       <Tag type={"button"} value={rowData.status} severity={getSeverity(rowData.status)}
@@ -204,7 +205,6 @@ const UsersDetailsRacheli = (props) => {
       return <CustomEmailColumn rowData={rowData} />;
     };
   
-
   return (
     props.userAuthorization == 2 ?
       <>
@@ -218,9 +218,10 @@ const UsersDetailsRacheli = (props) => {
             filters={filters}
             filterDisplay="row"
             loading={loading}
-            globalFilterFields={['name', 'lastName', 'configEmail', 'status', 'emailAddress']}
+            globalFilterFields={['name', 'lastName', 'configEmail', 'emailAddress']}
             header={header}
             emptyMessage="לא נמצאו משתמשים."
+            onRowClick={(e) => { setValues(e.data) }}
             style={{ "direction": "rtl" }}
           >
             <Column
@@ -264,10 +265,10 @@ const UsersDetailsRacheli = (props) => {
               className='text-right'
               field="emailAddress"
               header="שליחת מייל למשתמש"
-              style={{ minWidth: '6rem' }}
-              filterPlaceholder="חיפוש על פי כתובת מייל"
+              // style={{ minWidth: '6rem' }}
               filter
               body={emailBodyTemplate}
+              filterPlaceholder="חיפוש על פי כתובת מייל"
             />
           </DataTable>
         </div>

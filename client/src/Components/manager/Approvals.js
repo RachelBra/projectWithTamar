@@ -7,7 +7,7 @@ import { useFetcher, useNavigate, useParams } from "react-router-dom"
 import 'primeflex/primeflex.css';
 import axios from 'axios';
 import '../../Services/style/approvals.css';
-import DropZone from './Racheli';
+import DropZone from './UploadHandwriting';
 export default function SingleColumnDemo(props) {
     const navigate = useNavigate();
     const params = useParams()

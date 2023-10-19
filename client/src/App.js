@@ -104,10 +104,12 @@ function App() {
   }, [])
 
   const containerStyle = {
-    backgroundImage: `url("https://mikispitzer.com/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-18-at-19.02.44-10.jpeg")`,
-    backgroundSize: 'cover', // Adjust this property to fit your needs
-    width: '100%',
-    height: '500px', // Set the height as needed
+    backgroundImage: `url("https://upload.wikimedia.org/wikipedia/commons/c/c8/Yehoshua_Leib_Diskin.jpg")`,
+    // backgroundSize: 'cover', // Adjust this property to fit your needs
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    width: '98vw',
+    height: '95vh'
 };
 
   return (
