@@ -44,8 +44,8 @@ export default function FilterDemo() {
                 {/* <div className="card flex flex-wrap justify-content-center gap-5 "> */}
                     <Tree
                         loading={loading}
-                        // style={{ direction: '' }}
-                        className=" w-full md:w-40rem "
+                        style={{ direction: 'rtl' }}
+                        className=" w-full md:w-40rem custom-tree-rtl"
                         value={nodes}
                         filter
                         filterMode="strict"
