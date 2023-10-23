@@ -11,6 +11,7 @@ import { Divider } from 'primereact/divider';
 import TranscptionManager from "./TranscptionManager";
 import { Card } from 'primereact/card';
 import '../../App.css';
+import { ProgressSpinner } from "primereact/progressspinner";
 const Handwriting = () => {
     const params = useParams()
     const handwritingId = params.id;
@@ -36,15 +37,19 @@ const Handwriting = () => {
   
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="card flex justify-content-center">
+            <ProgressSpinner />
+        </div>
+        )
     }
 
     return (
         <>
             <div className="card" style={{ "width": "100%", "direction": "rtl" }} >
                 <div className="flex flex-column md:flex-row">
-                    <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5" >
-                        {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="250" preview p-button-text style={{ marginLeft: "3px" }} />}
+                    <div className="w-full  flex flex-column align-items-center justify-content-center gap-3 py-5" >
+                        {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="100%" preview p-button-text  />}
 
                     </div>
                     <div className="w-full md:w-2">
@@ -55,7 +60,7 @@ const Handwriting = () => {
                             <b><i className="pi pi-arrows-v"></i></b>
                         </Divider>
                     </div>
-                    <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
+                    <div className="w-full  flex align-items-center justify-content-center py-5">
                         <div className="w-full md:w-s5 flex align-items-center justify-content-center py-5">
                             <Card title="תמלול על ידי טכנולוגיה של בינה מלאכותית">
                                 <TranscptionManager text={data.handwriting.transcription} handwritingId={handwritingId}  ></TranscptionManager>

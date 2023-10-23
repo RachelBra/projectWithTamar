@@ -99,6 +99,18 @@ body {
     border: 1px solid #d09807;
 } */
 
+.custom-tree-rtl .p-treenode .p-treenode-children {
+  padding-right: 2rem; /* Adjust the padding to control the indentation */
+}
+
+.custom-tree-rtl .p-treenode-label {
+  margin-right: 1rem; /* Adjust the margin to maintain proper alignment */
+}
+
+.custom-tree-rtl .p-link {
+  transform: rotate(180deg); 
+}
+
 
 
 
