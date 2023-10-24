@@ -28,7 +28,19 @@ class UsersController {
             return res.status(201).json(obj)
         return res.status(404).json({ message: 'error' })
     }
-
+///////////////////////////////////////////////////////TranscptionManager
+    getUserById= async (req, res) => {
+        if (!req.params.id)
+            return res.status(400).json({ message: '😊😊😊😊All fields are required' })
+        const foundUser = await User.findOne({ where: { id: req.params.id }, attributes:{ exclude: ['password'] } });
+        if (foundUser) {
+            const userInfo = { id: foundUser.id, first_name: foundUser.first_name, last_name: foundUser.last_name }
+            const accessToken = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET)
+            return res.status(201).json({ accessToken: {accessToken,foundUser} })
+        }            
+        return res.status(404).json({ message: 'משתמש לא קיים' })
+    }
+/////////////////////////////////////
     logIn = async (req, res) => {
         if (!req.params.email || !req.params.password)
             return res.status(400).json({ message: '😊😊😊😊All fields are required' })

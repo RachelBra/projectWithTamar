@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Chips } from "primereact/chips";
 import { Button } from 'primereact/button';
 import axios from 'axios';
-import { InputText } from 'primereact/inputtext';
-import { Navigate, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { ScrollPanel } from 'primereact/scrollpanel';
 import { ListBox } from 'primereact/listbox';
 import { Dialog } from 'primereact/dialog';
@@ -18,14 +16,14 @@ function Transcption(props) {
     const [flagIgnore, setFlagIgnore] = useState(false);
     const [visible, setVisible] = useState(false);
     const [originalWord, setOriginalWord] = useState("");
+    const [userId, setUserId] = useState(0);
     const [newWord, setNewWord] = useState("");
     const [indexWord, setIndexWord] = useState(0);
     const [help, setHelp] = useState(false);
 
-    // const [key, setKey] = useState(0);
-
     const location = useLocation();
     const corrections = location.state.corrections;
+    console.log("corrections", corrections);
 
     const navigate = useNavigate();
 
@@ -34,6 +32,7 @@ function Transcption(props) {
         setOriginalWord(tmp?.original_word);
         setNewWord(tmp?.new_word)
         setIndexWord(tmp?.word_index);
+        setUserId(tmp?.user_id);
     }, [id, originalWord])
 
     //מערך של כל האינדקסים במילה
@@ -53,11 +52,16 @@ function Transcption(props) {
     const showCorrections = (e) => {
         let tmp = [];
         corrections?.forEach(element => { if (element.word_index <= e && element.word_index + element.original_word.length >= e) { tmp.push({ name: element.new_word, code: element.id, original_word: element.original_word, word_index: element.word_index }); } })
-        tmp.push({ name: "-התעלמות מכלל התיקונים-" , original_word:"-"})
+        tmp.push({ name: "-התעלמות מכלל התיקונים-", original_word: "-" })
         setCorr(tmp);
         setOpen(true);
         setHelp(true);
     }
+
+    // const getUserDetails(userId)=>{
+    //     axios.get('users/localStorage')
+        
+    // }
 
     const server = (newTr, dlt, arr) => {
         newTr != "" &&
@@ -84,7 +88,7 @@ function Transcption(props) {
                 })
                 .finally(function () {
                 });
-                navigate(`/Approvals/${"rb"}`);
+        navigate(`/Approvals/${"rb"}`);
     }
 
 
@@ -110,7 +114,7 @@ function Transcption(props) {
     const footerContent = (
         <div>
             <Button onClick={() => { update(); setVisible(false) }} label="כן" className="m-1 border-1 border-bluegray-500 w-6.7rem" icon="pi pi-check" severity="secondary" type="submit" raised />
-            <Button onClick={() => { setVisible(false)}} label="לא" className="m-1" icon="pi pi-times" severity="secondary" type="submit" raised outlined />
+            <Button onClick={() => { setVisible(false) }} label="לא" className="m-1" icon="pi pi-times" severity="secondary" type="submit" raised outlined />
         </div>
     );
     return (
@@ -130,11 +134,11 @@ function Transcption(props) {
                 </p>
             </ScrollPanel>
 
-            {open && <ListBox onClick={(e) => {setVisible(true)}} onChange={(e) =>{ setId(e.value.code); e.value.original_word=="-"?setFlagIgnore(true):setFlagIgnore(false)}} options={corr} optionLabel="name"/>}
+            {open && <ListBox onClick={(e) => { setVisible(true) }} onChange={(e) => { setId(e.value.code); e.value.original_word == "-" ? setFlagIgnore(true) : setFlagIgnore(false) }} options={corr} optionLabel="name" />}
 
             <Dialog header="אישור הנתיב" visible={visible} style={{ width: '40vw', direction: 'rtl' }} onHide={() => setVisible(false)} footer={footerContent}>
-                <p className="m-1">בלחיצה על אישור הקובץ יתעדכן </p>
-                <p className="m-1">וכל שאר ההצעות על המילה הזו ימחקו </p>
+                <p className="m-1">בלחיצה על אישור הקובץ יתעדכן, </p>
+                <p className="m-1">וכל שאר ההצעות על המילה הזו ימחקו. </p>
                 {flagIgnore ?
                     <>
                         <p className="mt-2 font-bold"> תרצה להשאיר את המילה המקורית</p>
@@ -142,15 +146,21 @@ function Transcption(props) {
                     </>
                     :
                     <>
-                        <p className="mt-2"> תרצה להחליף את המילה:</p>
-                        <p className="m-1 font-bold"> {originalWord}</p>
-                        <p className="m-1"> במילה:</p>
-                        <p className="m-1 font-bold">{newWord}</p>
+                        <p className="m-2"> תרצה להחליף את המילה:</p>
+                        <p className="m-2 font-bold"> {originalWord}</p>
+                        <p className="m-2"> במילה:</p>
+                        <p className="m-2 font-bold">{newWord}</p>
+                        <div className='m-3 text-cente'>רוצה לראות את פרטי מעלה התיקון?  <NavLink to={{
+                            pathname: "/UsersDetails",
+                            state: {
+                                id: userId
+                            }
+                        }}>לחץ כאן</NavLink></div>
                     </>
                 }
             </Dialog>
 
-        </div>
+        </div >
     );
 }
 export default Transcption;
