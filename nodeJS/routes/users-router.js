@@ -5,14 +5,17 @@ const usersRouter = express.Router();
 const verifyJWT = require("../middleware/verifyJWT")
 
 usersRouter.route("/logIn/:email/:password")//changepassword2
-    .get( userController.logIn)
+    .get(userController.logIn)
+
+usersRouter.route("/getUserById/:id")//changepassword2
+    .get(userController.getUserById)
 
 usersRouter.route("/localStorage/:id")
-    .get( userController.localStorage) 
+    .get(userController.localStorage)
 
 usersRouter.route("/register")
-    .post( userController.register)
-    
+    .post(userController.register)
+
 usersRouter.route("/updatePassword1/:email")//token
     .put(userController.updatePassword1)
 
@@ -33,9 +36,9 @@ usersRouter.route("/sendEmailToUser")
 
 usersRouter.route("/emailToUsers")
     .put(usersController.sendEmailToUsers)///////fti
-    
+
 usersRouter.route("/authorization")
-    .put( userController.updateUserAuthorization) //verifyJWT,
+    .put(userController.updateUserAuthorization) //verifyJWT,
 
 usersRouter.route("/usersList")
     .get(userController.getAllUsers)

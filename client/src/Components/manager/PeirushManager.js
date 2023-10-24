@@ -49,7 +49,6 @@ const Peirush = () => {
     }
 
     const showPerush = () => {
-        debugger
         var prsh = [];
         console.log("peirushim", peirushim);
 
@@ -60,7 +59,7 @@ const Peirush = () => {
                         {peirushim[index].peirush_text}
                     </p>
                     {peirushim[index].permission == 0 &&
-                        <Button className='m-1' icon="pi pi-check " severity="success" rounded outlined onClick={(e) => { setKind(e.target.innerHTML); setVisible(true); setId(peirushim[index].id); console.log("0000000000000", peirushim[index].id); }} />}
+                        <Button className='m-1' icon="pi pi-check " severity="success" rounded outlined onClick={(e) => { setKind('אישור'); console.log("e.target.innerHTML",e.target.innerHTML);setVisible(true); setId(peirushim[index].id); console.log("0000000000000", peirushim[index].id); }} />}
                     <Button className='m-1' icon="pi pi-times " severity="danger" rounded outlined onClick={() => { setVisible(true); setId(peirushim[index].id) }} />
                 </Fieldset>
             )

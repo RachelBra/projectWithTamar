@@ -34,7 +34,7 @@ const Handwriting = () => {
             <div className="card" style={{ "width": "100%", "direction": "rtl" }} >
                 <div className="flex flex-column md:flex-row">
                     <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5" >
-                        {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="250" preview p-button-text style={{ marginLeft: "3px" }} />}
+                        {<Image src={`data:image/png;base64,${data.handwriting.image_path}`} alt="Image" width="100%" preview p-button-text style={{ marginLeft: "3px" }} />}
 
                     </div>
                     <div className="w-full md:w-2">
@@ -53,7 +53,7 @@ const Handwriting = () => {
                 </div>
             </div>
             <div className="card">
-                <div className="card  flex-column flex justify-content-right  " style={{ "width": "89%" }}>
+                <div className="card  flex-column flex justify-content-right  " style={{ "width": "100%" }}>
                     <Card title="תמלול על ידי טכנולוגיה של בינה מלאכותית">
                         <PeirushManager peirushim={data.peirushim} peirushId={peirushId}></PeirushManager>
                     </Card>

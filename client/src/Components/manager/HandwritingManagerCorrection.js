@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { AutoComplete } from "primereact/autocomplete";
-// import AddPeirush from "./AddPeirush";
-import axios from 'axios';
-import useGetAxiosApi from '../../Hooks/useGetAxiosApi';
 import { useParams } from 'react-router-dom';
-import { Button } from 'primereact/button';
-// import Peirush from "./Peirush";
 import { Image } from 'primereact/image';
 import { Divider } from 'primereact/divider';
-import TranscptionManager from "./TranscptionManager";
-import { Card } from 'primereact/card';
-import '../../App.css';
 import { ProgressSpinner } from "primereact/progressspinner";
+import { Card } from 'primereact/card';
+import TranscptionManager from "./TranscptionManager";
+import axios from 'axios';
+import '../../App.css';
+
 const Handwriting = () => {
     const params = useParams()
     const handwritingId = params.id;
