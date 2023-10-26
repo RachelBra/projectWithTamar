@@ -60,7 +60,7 @@ function Transcption(props) {
 
     // const getUserDetails(userId)=>{
     //     axios.get('users/localStorage')
-        
+
     // }
 
     const server = (newTr, dlt, arr) => {
@@ -124,7 +124,7 @@ function Transcption(props) {
                     {words.map((word, index) => {
                         if (chars.find(e => e == index)) {
                             return (
-                                <span onClick={() => showCorrections(index)} key={index} style={{ backgroundColor: 'orange' }}>
+                                <span className='cursor-pointer' onClick={() => showCorrections(index)} key={index} style={{ backgroundColor: 'orange' }}>
                                     {word}
                                 </span>);
                         } else {
@@ -150,12 +150,16 @@ function Transcption(props) {
                         <p className="m-2 font-bold"> {originalWord}</p>
                         <p className="m-2"> במילה:</p>
                         <p className="m-2 font-bold">{newWord}</p>
-                        <div className='m-3 text-cente'>רוצה לראות את פרטי מעלה התיקון?  <NavLink to={{
-                            pathname: "/UsersDetails",
-                            state: {
-                                id: userId
-                            }
-                        }}>לחץ כאן</NavLink></div>
+                        <div className='m-3 text-cente'>רוצה לראות את פרטי מעלה התיקון? 
+                            {/* <NavLink to={{
+                                pathname: "/UsersDetails",
+                                state: {
+                                    id: userId
+                                }
+                            }}>לחץ כאן {userId}</NavLink> */}
+                            <a onClick={() => navigate("/UsersDetails", { state: { id: userId } })}className='text-primary-600 hover:underline cursor-pointer m-1' >לחץ כאן</a>
+
+                        </div>
                     </>
                 }
             </Dialog>
