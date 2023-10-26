@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { enterHanwriting, createTree } from '../Services/functions';
 import { useNavigate } from 'react-router-dom';
-import 'primeflex/primeflex.css';
-import axios from 'axios';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import 'primeflex/primeflex.css';
 import '../App.css';
-// import { CustomTreeNode } from './CustomTreeNode'; // Import the CustomTreeNode component 
+import axios from 'axios';
 
 export default function FilterDemo() {
 

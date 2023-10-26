@@ -7,15 +7,15 @@ import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Tag } from 'primereact/tag';
 import { TriStateCheckbox } from 'primereact/tristatecheckbox';
-import useGetAxiosApi from '../../Hooks/useGetAxiosApi';
 import { orderUsers } from '../../Services/functions';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { Toast } from 'primereact/toast';
+import { useLocation } from "react-router-dom"
+import useGetAxiosApi from '../../Hooks/useGetAxiosApi';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import axios from 'axios';
-import { Toast } from 'primereact/toast';
-import { useLocation } from "react-router-dom"
 import '../../App.css';
 
 const UsersDetailsRacheli = (props) => {
@@ -26,7 +26,6 @@ const UsersDetailsRacheli = (props) => {
   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [statuses] = useState(['משתמש חסום', 'משתמש', 'מנהל']);
   const [visible, setVisible] = useState(false);
-  // const [id, setId] = useState(useLocation().state?.id);
   const toast = useRef(null);
 
   const { data, loading: loadingPrice, error, refetch } = useGetAxiosApi('users/usersList');
@@ -38,24 +37,16 @@ const UsersDetailsRacheli = (props) => {
     config: { value: null, matchMode: FilterMatchMode.EQUALS },
     status: { value: null, matchMode: FilterMatchMode.EQUALS },
     verified: { value: null, matchMode: FilterMatchMode.EQUALS },
-    emailAddress: { value: null, matchMode: FilterMatchMode.EQUALS }
+    emailAddress: { value: null, matchMode: FilterMatchMode.CONTAINS }
   });
 
-  // id?
-  // id=5
-  // :
-  // id=5
   const getUser = (id) => {
     const cookies = axios.get(`http://localhost:8000/users/getUserById/${id}`
     )
         .then(function (response) {
           setFilters({
-            // global: { value: null, matchMode: FilterMatchMode.CONTAINS },
             name: { value: response.data.accessToken.foundUser.first_name, matchMode: FilterMatchMode.CONTAINS },
             lastName: { value: response.data.accessToken.foundUser.last_name, matchMode: FilterMatchMode.CONTAINS },
-            // config: { value: null, matchMode: FilterMatchMode.EQUALS },
-            // status: { value: null, matchMode: FilterMatchMode.EQUALS },
-            // verified: { value: null, matchMode: FilterMatchMode.EQUALS },
             emailAddress: { value: response.data.accessToken.foundUser.email, matchMode: FilterMatchMode.EQUALS }
           })
         })
@@ -80,7 +71,7 @@ const UsersDetailsRacheli = (props) => {
 
   let location = useLocation();
   useEffect(() => {
-    location.state?.id&&getUser(location.state?.id)
+    location?.state?.id&&getUser(location.state.id)
     // getUser(5)
     const tmp = orderUsers(data);
     setUsers(tmp);
@@ -205,7 +196,7 @@ const UsersDetailsRacheli = (props) => {
 
   const statusBodyTemplate = (rowData) => {
     return (
-      <Tag type={"button"} value={rowData.status} severity={getSeverity(rowData.status)}
+      <Tag value={rowData.status} severity={getSeverity(rowData.status)}
         onClick={(e) => {
           setVisible(true);
           tmp();

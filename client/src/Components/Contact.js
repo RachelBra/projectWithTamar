@@ -4,8 +4,8 @@ import { Editor } from 'primereact/editor';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import axios from 'axios';
-import { NavLink } from "react-router-dom";
 import '../App.css';
+
 const Contact = (props) => {
 
     const sendEmail = (forNode) => {
